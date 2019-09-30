@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Build folders
+build/
+
+# Vim undo files
+*.un~
