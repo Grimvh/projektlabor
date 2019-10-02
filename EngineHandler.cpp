@@ -1,15 +1,15 @@
 #include "EngineHandler.h"
 
 EngineHandler::EngineHandler(){
-	std::cout << "ENGINEHANDLER" << std:endl;
+	std::cout << "ENGINEHANDLER" << std::endl;
 }
 
-EngineHandler::addToEngineList() {
+void EngineHandler::addToEngineList() {
 	engines.append("ASDASDASDASD");
 	listEngines();
 }
 
-EngineList::listEngines() {
+void EngineHandler::listEngines() {
 	for(QList<std::string>::iterator it = engines.begin(); it < engines.end(); ++it) {
 		std::cout << *it << std::endl;
 	}

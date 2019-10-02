@@ -1,11 +1,11 @@
 #include "Core.h"
 
 Core::Core() {
-	EngineHandler *eh;
+	auto *eh = new EngineHandler;
 	connect(this, &Core::addSignal, eh, &EngineHandler::addEngineSlot);
 }
 
-void Core::addEngine(std::string engine_name) {
+void Core::addEngine() {
 	emit addSignal();
 }
 

@@ -11,7 +11,7 @@ class Core : public QObject {
 	public:
 		Core();
 	private:
-		void addEngine(std::string engine_name);
+		void addEngine();
 		int loadDataset();
 		QList<int> data_list;
 	signals:

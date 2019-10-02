@@ -14,6 +14,6 @@ public slots:
 	void printEnginesSlot();
 private:
 	QList<std::string> engines;
-	void addToEngineList(std::string engine);
+	void addToEngineList();
 	void listEngines();
 };
