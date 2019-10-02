@@ -1,12 +1,28 @@
 #include "Core.h"
 
+auto *eh = new EngineHandler;
+
 Core::Core() {
-	auto *eh = new EngineHandler;
-	connect(this, &Core::addSignal, eh, &EngineHandler::addEngineSlot);
+	connect(this, &Core::addEngineSignal, eh, &EngineHandler::addEngineSlot);
+	connect(this, &Core::listEnginesSignal, eh, &EngineHandler::listEnginesSlot);
+
+	QList<int> temp;
+	temp.append(123);
+	temp.append(412);
+	temp.append(361);
+
+	addEngine(temp, "bubblesort", 37264);
+	addEngine(temp, "selectionsort", 23713);
+	addEngine(temp, "quicksort", 23714);
+	listEngines();
 }
 
-void Core::addEngine() {
-	emit addSignal();
+void Core::addEngine(QList<int> data, std::string mode, int uuid) {
+	emit addEngineSignal(data, mode, uuid);
+}
+
+void Core::listEngines() {
+	emit listEnginesSignal();
 }
 
 int Core::loadDataset() {

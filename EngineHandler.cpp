@@ -1,16 +1,17 @@
 #include "EngineHandler.h"
 
 EngineHandler::EngineHandler(){
-	std::cout << "ENGINEHANDLER" << std::endl;
+	std::cout << "=== ENGINE HANDLER CONSTRUCTOR ===" << std::endl;
 }
 
-void EngineHandler::addToEngineList() {
-	engines.append("ASDASDASDASD");
-	listEngines();
+void EngineHandler::addEngineSlot(QList<int> data, std::string mode, int uuid) {
+	Engine *engine = new Engine(data, mode, uuid);
+	engines.append(engine);
 }
 
-void EngineHandler::listEngines() {
-	for(QList<std::string>::iterator it = engines.begin(); it < engines.end(); ++it) {
-		std::cout << *it << std::endl;
+void EngineHandler::listEnginesSlot() {
+	for(QList<Engine*>::iterator it = engines.begin(); it < engines.end(); ++it) {
+		std::cout << *it->getMode() << std::endl;
 	}
 }
+

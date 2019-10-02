@@ -4,16 +4,16 @@
 #include <QObject>
 #include <string.h>
 
+#include "Engine.h"
+
 class EngineHandler : public QObject {
 	Q_OBJECT
 
 public:
 	EngineHandler();
 public slots:
-	void addEngineSlot();
-	void printEnginesSlot();
+	void addEngineSlot(QList<int> data, std::string mode, int uuid);
+	void listEnginesSlot();
 private:
-	QList<std::string> engines;
-	void addToEngineList();
-	void listEngines();
+	QList<Engine*> engines;
 };
