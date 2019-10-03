@@ -17,7 +17,9 @@ class Core : public QObject {
 		void listEngines();
 		int loadDataset();
 		QList<int> data_list;
+		void startEngines();
 	signals:
 		void addEngineSignal(QList<int> data, QString mode, int uuid);
 		void listEnginesSignal();
+		void startEnginesSignal();
 };

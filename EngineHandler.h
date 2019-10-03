@@ -18,4 +18,7 @@ private:
 public slots:
 	void addEngineSlot(QList<int> data, QString mode, int uuid);
 	void listEnginesSlot();
+	void engineDoneSlot(QString data);
+signals:
+	void startEnginesSignal();
 };

@@ -5,6 +5,7 @@ auto *eh = new EngineHandler();
 Core::Core() {
 	connect(this, &Core::addEngineSignal, eh, &EngineHandler::addEngineSlot);
 	connect(this, &Core::listEnginesSignal, eh, &EngineHandler::listEnginesSlot);
+	connect(this, &Core::startEnginesSignal, eh, &EngineHandler::startEnginesSignal);
 
 	QList<int> temp;
 	temp.append(123);
@@ -15,6 +16,7 @@ Core::Core() {
 	addEngine(temp, "selectionsort", 23713);
 	addEngine(temp, "quicksort", 23714);
 	listEngines();
+	startEngines();
 }
 
 void Core::addEngine(QList<int> data, QString mode, int uuid) {
@@ -23,6 +25,10 @@ void Core::addEngine(QList<int> data, QString mode, int uuid) {
 
 void Core::listEngines() {
 	emit listEnginesSignal();
+}
+
+void Core::startEngines() {
+	emit startEnginesSignal();
 }
 
 int Core::loadDataset() {

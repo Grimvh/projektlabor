@@ -36,3 +36,6 @@ build/
 
 # Vim undo files
 *.un~
+
+# Swap files
+*.swp
