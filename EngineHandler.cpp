@@ -18,6 +18,6 @@ void EngineHandler::listEnginesSlot() {
 }
 
 void EngineHandler::engineDoneSlot(QString data) {
-	qDebug() << data;
+	qDebug() << "Process finished in " << data << " microseconds";
 }
 
