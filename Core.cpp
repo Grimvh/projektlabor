@@ -17,7 +17,7 @@ Core::Core() {
 	listEngines();
 }
 
-void Core::addEngine(QList<int> data, std::string mode, int uuid) {
+void Core::addEngine(QList<int> data, QString mode, int uuid) {
 	emit addEngineSignal(data, mode, uuid);
 }
 

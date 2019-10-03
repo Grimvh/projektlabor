@@ -11,6 +11,7 @@ find_package(Qt5 COMPONENTS Core REQUIRED HINTS ${QT_DIR})
 
 include_directories(.)
 
-add_executable(sorting-algorithm-tester main.cpp Core.cpp EngineHandler.cpp)
+file(GLOB sources "*.cpp")
+add_executable(sorting-algorithm-tester ${sources})
 
 target_link_libraries(sorting-algorithm-tester Qt5::Core)

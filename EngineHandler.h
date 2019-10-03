@@ -2,8 +2,9 @@
 
 #include <iostream>
 #include <QObject>
-#include <string>
 #include <QList>
+#include <QString>
+#include <QDebug>
 
 #include "Engine.h"
 
@@ -12,9 +13,9 @@ class EngineHandler : public QObject {
 
 public:
 	EngineHandler();
-public slots:
-	void addEngineSlot(QList<int> data, std::string mode, int uuid);
-	void listEnginesSlot();
 private:
 	QList<Engine*> engines;
+public slots:
+	void addEngineSlot(QList<int> data, QString mode, int uuid);
+	void listEnginesSlot();
 };

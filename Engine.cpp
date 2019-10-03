@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-Engine::Engine(QList<int> _data, std::string _mode, int _uuid):
+Engine::Engine(QList<int> _data, QString _mode, int _uuid):
 	data(_data),
 	mode(_mode),
 	uuid(_uuid)
@@ -8,6 +8,6 @@ Engine::Engine(QList<int> _data, std::string _mode, int _uuid):
 		
 }
 
-std::string Engine::getMode(){
+QString Engine::getMode(){
 	return mode;
 }

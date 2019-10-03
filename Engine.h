@@ -1,14 +1,14 @@
 #pragma once
 
 #include <QList>
-#include <string>
+#include <QString>
 
 class Engine{
 	public:
-		Engine(QList<int> data, std::string mode, int uuid);
-		std::string getMode();
+		Engine(QList<int> _data, QString _mode, int _uuid);
+		QString getMode();
 	private:
 		QList<int> data;
-		std::string mode;
+		QString mode;
 		int uuid;
 };
