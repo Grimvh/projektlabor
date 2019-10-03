@@ -1,6 +1,6 @@
 #include "Core.h"
 
-auto *eh = new EngineHandler;
+auto *eh = new EngineHandler();
 
 Core::Core() {
 	connect(this, &Core::addEngineSignal, eh, &EngineHandler::addEngineSlot);

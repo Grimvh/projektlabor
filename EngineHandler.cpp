@@ -5,13 +5,12 @@ EngineHandler::EngineHandler(){
 }
 
 void EngineHandler::addEngineSlot(QList<int> data, std::string mode, int uuid) {
-	Engine *engine = new Engine(data, mode, uuid);
-	engines.append(engine);
+	engines.append(new Engine(data, mode, uuid));
 }
 
 void EngineHandler::listEnginesSlot() {
-	for(QList<Engine*>::iterator it = engines.begin(); it < engines.end(); ++it) {
-		std::cout << *it->getMode() << std::endl;
+	for(auto engine : engines) {
+		std::cout << engine->getMode() << std::endl;
 	}
 }
 

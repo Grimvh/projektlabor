@@ -1,9 +1,9 @@
 #include "Engine.h"
 
-Engine::Engine(QList<int> data, std::string mode, int uuid):
-	data(data),
-	mode(mode),
-	uuid(uuid)
+Engine::Engine(QList<int> _data, std::string _mode, int _uuid):
+	data(_data),
+	mode(_mode),
+	uuid(_uuid)
 {
 		
 }

@@ -2,7 +2,8 @@
 
 #include <iostream>
 #include <QObject>
-#include <string.h>
+#include <string>
+#include <QList>
 
 #include "Engine.h"
 
