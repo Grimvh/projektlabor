@@ -1,4 +1,4 @@
-long long bubbleSort(int arr[], int n) {
+/*long long bubbleSort(int arr[], int n) {
     auto t1 = std::chrono::high_resolution_clock::now();
     int i, j;
     for (i = 0; i < n-1; i++)
@@ -105,5 +105,5 @@ long long mergeSort(int arr[], int l, int r) {
     auto t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
     return duration;
-}
+}*/
 

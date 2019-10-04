@@ -12,12 +12,14 @@ class Core : public QObject {
 	Q_OBJECT
 	public:
 		Core();
+		~Core();
 	private:
 		void addEngine(QList<int> data, QString mode, int uuid);
 		void listEngines();
 		int loadDataset();
 		QList<int> data_list;
 		void startEngines();
+		EngineHandler *engineHandler;
 	signals:
 		void addEngineSignal(QList<int> data, QString mode, int uuid);
 		void listEnginesSignal();

@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QObject>
 
-class Engine : public QThread{
+class Engine : public QThread {
 	Q_OBJECT
 public:
 	Engine(QList<int> _data, QString _mode, int _uuid);
@@ -15,8 +15,9 @@ private:
 	QList<int> data;
 	QString mode;
 	int uuid;
+	void bubbleSort(QList<int> input);
 public slots:
 	void startEnginesSlot();
 signals:
-	void engineDoneSignal(QString data);
+	void engineDoneSignal(double duration);
 };

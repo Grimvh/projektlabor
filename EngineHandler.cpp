@@ -1,13 +1,18 @@
 #include "EngineHandler.h"
 
-EngineHandler::EngineHandler(){
-	qDebug() << "=== ENGINE HANDLER CONSTRUCTOR ===";
+EngineHandler::EngineHandler() {
+
+}
+
+EngineHandler::~EngineHandler() {
+
 }
 
 void EngineHandler::addEngineSlot(QList<int> data, QString mode, int uuid) {
-	Engine *engine = new Engine(data, mode, uuid);
-	connect(this, &EngineHandler::startEnginesSignal, engine, &Engine::startEnginesSlot);
-	connect(engine, &Engine::engineDoneSignal, this, &EngineHandler::engineDoneSlot);
+	engine = new Engine(data, mode, uuid);
+	connect(this, &EngineHandler::startEnginesSignal, engine, &Engine::startEnginesSlot, Qt::QueuedConnection);
+	connect(engine, &Engine::engineDoneSignal, this, &EngineHandler::engineDoneSlot, Qt::QueuedConnection);
+	engine->start();
 	engines.append(engine);
 }
 
@@ -17,7 +22,7 @@ void EngineHandler::listEnginesSlot() {
 	}
 }
 
-void EngineHandler::engineDoneSlot(QString data) {
-	qDebug() << "Process finished in " << data << " microseconds";
+void EngineHandler::engineDoneSlot(double duration) {
+	qDebug() << "Process finished in " << duration << " milliseconds";
 }
 

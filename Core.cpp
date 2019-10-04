@@ -1,11 +1,13 @@
 #include "Core.h"
 
-auto *eh = new EngineHandler();
-
 Core::Core() {
-	connect(this, &Core::addEngineSignal, eh, &EngineHandler::addEngineSlot);
-	connect(this, &Core::listEnginesSignal, eh, &EngineHandler::listEnginesSlot);
-	connect(this, &Core::startEnginesSignal, eh, &EngineHandler::startEnginesSignal);
+	engineHandler = new EngineHandler();
+	connect(this, &Core::addEngineSignal, engineHandler, &EngineHandler::addEngineSlot);
+	connect(this, &Core::listEnginesSignal, engineHandler, &EngineHandler::listEnginesSlot);
+	connect(this, &Core::startEnginesSignal, engineHandler, &EngineHandler::startEnginesSignal);
+	connect(engineHandler, &EngineHandler::finished, engineHandler, &EngineHandler::deleteLater);
+
+	engineHandler->start();
 
 	QList<int> temp;
 	temp.append(123);
@@ -15,8 +17,13 @@ Core::Core() {
 	addEngine(temp, "bubblesort", 37264);
 	addEngine(temp, "selectionsort", 23713);
 	addEngine(temp, "quicksort", 23714);
-	listEngines();
+	//listEngines();
 	startEngines();
+}
+
+Core::~Core() {
+	engineHandler->quit();
+	engineHandler->wait();
 }
 
 void Core::addEngine(QList<int> data, QString mode, int uuid) {
