@@ -3,7 +3,7 @@ project (sorting-algorithm-tester)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 set(QT_DIR /home/gulyas/Qt/5.13.1/gcc_64)
 

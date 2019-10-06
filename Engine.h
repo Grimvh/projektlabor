@@ -5,19 +5,23 @@
 #include <QThread>
 #include <QDebug>
 #include <QObject>
+#include <QUuid>
 
 class Engine : public QThread {
 	Q_OBJECT
 public:
-	Engine(QList<int> _data, QString _mode, int _uuid);
+	Engine(QList<int> _data, QString _mode, QUuid _id);
+	~Engine();
 	QString getMode();
+protected:
+	void run() override;
 private:
 	QList<int> data;
 	QString mode;
-	int uuid;
+	QUuid id;
 	void bubbleSort(QList<int> input);
 public slots:
 	void startEnginesSlot();
 signals:
-	void engineDoneSignal(double duration);
+	void engineDoneSignal(double duration, QUuid id);
 };

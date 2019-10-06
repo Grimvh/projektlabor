@@ -2,10 +2,11 @@
 
 #include <iostream>
 #include <QObject>
-#include <QList>
 #include <QString>
 #include <QDebug>
 #include <QThread>
+#include <QMap>
+#include <QUuid>
 
 #include "Engine.h"
 
@@ -14,13 +15,17 @@ class EngineHandler : public QThread {
 public:
 	EngineHandler();
 	~EngineHandler();
+protected:
+	void run() override;
 private:
-	QList<Engine*> engines;
-	Engine *engine;
+	QMap<QUuid, Engine*> engines;
+	bool canExit = false;
 public slots:
-	void addEngineSlot(QList<int> data, QString mode, int uuid);
+	void addEngineSlot(QList<int> data, QString mode, QUuid id);
 	void listEnginesSlot();
-	void engineDoneSlot(double duration);
+	void engineDoneSlot(double duration, QUuid id);
+	void startEngines_slot();
 signals:
 	void startEnginesSignal();
+	void canExitSignal();
 };

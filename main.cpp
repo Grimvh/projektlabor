@@ -7,7 +7,9 @@
 int main(int argc, char *argv[]) {
 	QCoreApplication app(argc, argv);
 
-	std::unique_ptr<Core> p(new Core());
-
-	return 0;
+	qDebug() << "Main thread id:" << QThread::currentThreadId();
+	//std::unique_ptr<Core> p(new Core());
+	auto core = std::make_unique<Core>();
+	core->start();;
+	return QCoreApplication::exec();
 }
