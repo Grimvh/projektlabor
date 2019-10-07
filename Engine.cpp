@@ -5,6 +5,9 @@ Engine::Engine(QList<int> _data, QString _mode, QUuid _id):
 	mode(_mode),
 	id(_id)
 {
+	qDebug() << "engine constructor " << mode << " ,  thread id " << QThread::currentThreadId();
+	connect(this, &Engine::startEngineSignal, this, &Engine::startEnginesSlot);
+	this->start();
 }
 
 Engine::~Engine() {
@@ -12,7 +15,7 @@ Engine::~Engine() {
 }
 
 void Engine::run() {
-	qDebug() << "[Engine] Starting engine";
+	qDebug() << "[Engine]--------------------------------- Starting engine" << QThread::currentThreadId();
 	QThread::run();
 }
 
@@ -21,7 +24,7 @@ QString Engine::getMode() {
 }
 
 void Engine::startEnginesSlot() {
-	qDebug() << "Engine thread id: " << QThread::currentThreadId();	
+	qDebug() << "[Engine]************** current thread id: " << QThread::currentThreadId();	
 	auto start = std::chrono::high_resolution_clock::now();
 	qDebug() << "[Engine] Start engine " << id;
 	

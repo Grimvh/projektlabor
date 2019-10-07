@@ -44,7 +44,7 @@ void Core::run() {
 void Core::loadEngines() {
 	emit addEngineSignal(QList<int>{240,435,737}, "bubblesort", QUuid::createUuid());
 
-	emit addEngineSignal(QList<int>{240,435,737}, "noend", QUuid::createUuid());
+	emit addEngineSignal(QList<int>{240,435,737}, "randomsort", QUuid::createUuid());
 
 	emit addEngineSignal(QList<int>{240,435,737}, "selectionsort", QUuid::createUuid());
 

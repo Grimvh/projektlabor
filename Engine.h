@@ -24,4 +24,5 @@ public slots:
 	void startEnginesSlot();
 signals:
 	void engineDoneSignal(double duration, QUuid id);
+	void startEngineSignal();
 };

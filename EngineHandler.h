@@ -18,7 +18,7 @@ public:
 protected:
 	void run() override;
 private:
-	QMap<QUuid, Engine*> engines;
+	QMap<QUuid, Engine*> *engines;
 	bool canExit = false;
 public slots:
 	void addEngineSlot(QList<int> data, QString mode, QUuid id);
