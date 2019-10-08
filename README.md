@@ -1,4 +1,4 @@
-# Sorting Algorithm Tester
+# Sorting Algorithm Legendary Tester [S.A.L.T.]
 ## _Our entry for the Projektlabor class_
 
 ### Requirements:
