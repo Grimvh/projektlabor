@@ -3,7 +3,6 @@
 Core::Core() {
 	connect(this, &Core::initCore_signal, this, &Core::initCore_slot);
 	connect(this, &Core::loadEngines_signal, this, &Core::loadEngines_slot);
-	qDebug() << "CORE CONSTRUCTOR" << QThread::currentThreadId();
 	this->start();
 }
 
@@ -26,16 +25,13 @@ int Core::init() {
 	engineHandler->moveToThread(this);
 	connect(this, &Core::addEngineSignal, engineHandler, &EngineHandler::addEngineSlot, Qt::DirectConnection);
 	connect(this, &Core::listEnginesSignal, engineHandler, &EngineHandler::listEnginesSlot, Qt::QueuedConnection);
-	connect(this, &Core::startEnginesSignal, engineHandler, &EngineHandler::startEngines_slot, Qt::QueuedConnection);
+	connect(this, &Core::startEnginesSignal, engineHandler, &EngineHandler::startEnginesSignal, Qt::QueuedConnection);
 	connect(engineHandler, &EngineHandler::finished, engineHandler, &EngineHandler::deleteLater);
 	engineHandler->start();
-	qDebug() << "Core thread id: " << QThread::currentThreadId();
-	while(!engineHandler->isRunning());
 	return 0;
 }
 
 void Core::run() {
-	qDebug() << "FUUUUUUUUUCK" << QThread::currentThreadId();
 	emit initCore_signal();
 	emit loadEngines_signal();
 	QThread::run();

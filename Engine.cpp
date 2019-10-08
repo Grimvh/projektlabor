@@ -5,35 +5,28 @@ Engine::Engine(QList<int> _data, QString _mode, QUuid _id):
 	mode(_mode),
 	id(_id)
 {
-	qDebug() << "engine constructor " << mode << " ,  thread id " << QThread::currentThreadId();
-	connect(this, &Engine::startEngineSignal, this, &Engine::startEnginesSlot);
-	this->start();
+	qDebug() << "[Engine] Engine created";
 }
 
 Engine::~Engine() {
-	qDebug() << "[Engine] Engine finished";
-}
-
-void Engine::run() {
-	qDebug() << "[Engine]--------------------------------- Starting engine" << QThread::currentThreadId();
-	QThread::run();
+	qDebug() << "[Engine] Engine deleted";
 }
 
 QString Engine::getMode() {
 	return mode;
 }
 
-void Engine::startEnginesSlot() {
-	qDebug() << "[Engine]************** current thread id: " << QThread::currentThreadId();	
+void Engine::run() {
 	auto start = std::chrono::high_resolution_clock::now();
-	qDebug() << "[Engine] Start engine " << id;
+	qDebug() << "[Engine] Engine started:" << id;
 	
 	for(int i = 0; i < 10; ++i){
 		qDebug() << i;
+		QThread::sleep(1);
 	}
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double, std::milli> diff = end - start;
-	qDebug() << "[Engine] emitting done signal to handler";
+	qDebug() << "[Engine] Engine task finished, emitting done";
 	emit engineDoneSignal(diff.count(), id);
 }
 

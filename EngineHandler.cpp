@@ -1,36 +1,29 @@
 #include "EngineHandler.h"
 
 EngineHandler::EngineHandler() {
-	qDebug() << "[EngineHandler] constructor() thread id: " << QThread::currentThreadId();
+	qDebug() << "[EngineHandler] EngineHandler created";
 	engines = new QMap<QUuid, Engine*>();
 	this->start();
 }
 
 EngineHandler::~EngineHandler() {
+	qDebug() << "[EngineHandler] EngineHandler deleted";
 	delete engines;
 }
 
 void EngineHandler::run() {
-	qDebug() << "[EngineHandler] EngineHandler run(),  thread id"  << QThread::currentThreadId();
+	qDebug() << "[EngineHandler] EngineHandler started";
 	QThread::run();
 }
 
-void EngineHandler::startEngines_slot() {
-	for(auto engine : *engines) {
-		emit engine->startEngineSignal();
-	}
-}
-
 void EngineHandler::addEngineSlot(QList<int> data, QString mode, QUuid id) {
-	qDebug() << "[EngineHandler] addEngineSlot started, thread id:" << QThread::currentThreadId() << ", mode:" << mode;
+	qDebug() << "[EngineHandler] Adding engine, mode:" << mode;
 	Engine *engine = new Engine(data, mode, id);
-	engine->moveToThread(this);
-	connect(this, &EngineHandler::startEnginesSignal, engine, &Engine::startEnginesSlot, Qt::QueuedConnection);
 	connect(engine, &Engine::engineDoneSignal, this, &EngineHandler::engineDoneSlot, Qt::QueuedConnection);
 	connect(engine, &Engine::finished, engine, &Engine::deleteLater);
 	engines->insert(id, engine);
 	engine->start();
-	qDebug() << "[EngineHandler] addEngineSlot finished, mode:" << mode;
+	qDebug() << "[EngineHandler] Added engine";
 }
 
 void EngineHandler::listEnginesSlot() {
@@ -41,9 +34,9 @@ void EngineHandler::listEnginesSlot() {
 
 void EngineHandler::engineDoneSlot(double duration, QUuid id) {
 	qDebug() << "[EngineHandler] Process " << id << " finished in " << duration << " milliseconds";
-	qDebug() << "engines.size=" << engines->size();
+	qDebug() << "[EngineHandler] Array size before:" << engines->size();
 	engines->remove(id);
-	qDebug() << "engines.size=" << engines->size();
+	qDebug() << "[EngineHandler] Array size after:" << engines->size();
 	if(engines->size() < 1) emit canExitSignal();
 }
 

@@ -24,7 +24,6 @@ public slots:
 	void addEngineSlot(QList<int> data, QString mode, QUuid id);
 	void listEnginesSlot();
 	void engineDoneSlot(double duration, QUuid id);
-	void startEngines_slot();
 signals:
 	void startEnginesSignal();
 	void canExitSignal();
