@@ -20,8 +20,7 @@ private:
 	QString mode;
 	QUuid id;
 	void bubbleSort(QList<int> input);
-//public slots:
-//	void startEnginesSlot();
+	void selectionSort(QList<int> input);
 signals:
 	void engineDoneSignal(double duration, QUuid id);
 	void startEngineSignal();

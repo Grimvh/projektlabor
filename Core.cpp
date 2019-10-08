@@ -19,7 +19,14 @@ void Core::loadEngines_slot() {
 	loadEngines();
 }
 
+void Core::printArray(QList<int> arr) {
+	for(int i = 0; i < arr.size(); ++i) {
+		qDebug() << arr[i];
+	}
+}
+
 int Core::init() {
+	printArray(data_list);
 	qDebug() << "[Core] Starting engine handler";
 	engineHandler = new EngineHandler();
 	engineHandler->moveToThread(this);
@@ -32,18 +39,15 @@ int Core::init() {
 }
 
 void Core::run() {
+	loadDataset();
 	emit initCore_signal();
 	emit loadEngines_signal();
 	QThread::run();
 }
 
 void Core::loadEngines() {
-	emit addEngineSignal(QList<int>{240,435,737}, "bubblesort", QUuid::createUuid());
-
-	emit addEngineSignal(QList<int>{240,435,737}, "randomsort", QUuid::createUuid());
-
-	emit addEngineSignal(QList<int>{240,435,737}, "selectionsort", QUuid::createUuid());
-
+	emit addEngineSignal(data_list, "bubblesort", QUuid::createUuid());
+	emit addEngineSignal(data_list, "selectionsort", QUuid::createUuid());
 	startEngines();
 }
 

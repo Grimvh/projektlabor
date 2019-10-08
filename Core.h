@@ -17,12 +17,9 @@ class Core : public QThread {
 		~Core();
 		int init();
 		void loadEngines();
-
 	public slots:
 		void initCore_slot();
 		void loadEngines_slot();
-	
-
 	protected:
 		void run() override;
 	private:
@@ -31,6 +28,7 @@ class Core : public QThread {
 		QList<int> data_list;
 		void startEngines();
 		EngineHandler *engineHandler;
+		void printArray(QList<int> arr);
 	signals:
 		void initCore_signal();
 		void loadEngines_signal();
